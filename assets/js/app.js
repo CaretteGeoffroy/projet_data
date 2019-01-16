@@ -1,3 +1,5 @@
+require('../scss/main.scss');
+
 var mymap = L.map('mapid').setView([47.115, 2.548828], 6);
 var marker = L.marker([51.5, -0.09]).addTo(mymap);
 var marker = L.marker([47.5, -0.09]).addTo(mymap);

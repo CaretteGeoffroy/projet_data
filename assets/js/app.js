@@ -3,6 +3,8 @@ require('../scss/main.scss');
 var mymap = L.map('mapid').setView([47.115, 2.548828], 6);
 var marker = L.marker([51.5, -0.09]).addTo(mymap);
 var marker = L.marker([47.5, -0.09]).addTo(mymap);
+var marker = L.marker([51.618017, 9.84375]).addTo(mymap);
+
 
 L.tileLayer('https://api.mapbox.com/styles/v1/geoffroycarette/cjqxkkqxb15fm2rlqvssrl8r6/tiles/256/{z}/{x}/{y}?access_token={accessToken}', {
     maxZoom: 18,

@@ -1,5 +1,32 @@
 body {
-  background-color: orange; }
+  margin: 0; }
+
+#mapid {
+  height: 100vh; }
+
+.logo {
+  position: absolute;
+  z-index: 999;
+  height: 90px;
+  top: 5px; }
+
+.leaflet-control-attribution {
+  display: none; }
+
+.leaflet-control-zoom {
+  position: fixed !important;
+  right: 15px !important; }
+
+.leaflet-control-zoom-in {
+  background-color: #5267AF !important;
+  color: white !important; }
+
+.leaflet-control-zoom-out {
+  background-color: #5267AF !important;
+  color: white !important; }
+
+.leaflet-bar a {
+  border-bottom: 1px solid #021456 !important; }
 
 
 /*# sourceMappingURL=style.css.map*/

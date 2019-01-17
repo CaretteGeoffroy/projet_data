@@ -24,10 +24,8 @@ fetch("https://opensky-network.org/api/states/all")
                         var marker = L.marker([posB, posA]).addTo(mymap);
                     }
                 }
-    
+                // move console.log(res.states[i][2]);
             }
-            console.log('Coucou');
-       
 
     })
     .catch((err) => {

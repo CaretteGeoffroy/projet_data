@@ -1,17 +1,6 @@
 require('../scss/main.scss');
 
 const map = L.map('mapid').setView([47.115, 2.548828], 6);
-let a = 2;
-// var marker = L.marker([48.8534, 2.3488]).addTo(mymap);
-// var marker = L.marker([49.8534, 2.3488]).addTo(mymap); 
-// var leafletId = marker._leaflet_id;
-
-// for (let i = 0; i < 10; i++) {
-// lat = Math.floor(Math.random() * 101);
-// lng = Math.floor(Math.random() * 101);
-
-// console.log(leafletId);
-// }
 
 
 L.tileLayer('https://api.mapbox.com/styles/v1/geoffroycarette/cjqxkkqxb15fm2rlqvssrl8r6/tiles/256/{z}/{x}/{y}?access_token={accessToken}', {

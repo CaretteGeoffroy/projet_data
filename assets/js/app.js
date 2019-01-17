@@ -15,6 +15,15 @@ function fetchData() {
             return res.json();
         })
         .then((res) => {
+            for (let i = 0; i < res.states.length; i++) {
+                let allCountry = res.states[i][2];
+
+                // let unique = [...new Set(allCountry)];
+                // console.log(unique);
+
+                let select = document.querySelector('#country');
+                select.options[select.options.length] = new Option(allCountry, 'value_' + i);
+            }
             return res.states.filter((state) => {
                 return (state[2] === 'France') && (state[5]) && (state[6]);
             });
@@ -25,11 +34,11 @@ function fetchData() {
 }
 
 function plotStates(map, markers) {
-    fetchData().then(function(states) {
+    fetchData().then(function (states) {
         states.forEach((state) => {
             const lat = state[6],
-                  lng = state[5],
-                  icao24 = state[0];
+                lng = state[5],
+                icao24 = state[0];
 
             if (markers[icao24]) {
                 markers[icao24].setLatLng([lat, lng]);

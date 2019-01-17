@@ -18,33 +18,6 @@ L.tileLayer('https://api.mapbox.com/styles/v1/geoffroycarette/cjqxkkqxb15fm2rlqv
     maxZoom: 18,
     id: 'mapbox.streets',
     accessToken: 'pk.eyJ1IjoiZ2VvZmZyb3ljYXJldHRlIiwiYSI6ImNqcXh1c20ycTBiZm80M2tlMnBlazFsc3QifQ.Nj35s8pJZFDudfEJGWHpDA'
-<<<<<<< HEAD
-}).addTo(mymap);
-
-setInterval(() => {
-fetch("https://opensky-network.org/api/states/all")
-    .then((res) => {
-        return res.json();
-    })
-    .then((res) => {
-
-            for (let i = 0; i < res.states.length; i++) {
-                if (res.states[i][2] == 'France') {
-                    if (res.states[i][5] != null || res.states[i][6] != null) {
-                        posA = res.states[i][5];
-                        posB = res.states[i][6];
-                        var marker = L.marker([posB, posA]).addTo(mymap);
-                    }
-                }
-                // move console.log(res.states[i][2]);
-            }
-
-    })
-    .catch((err) => {
-        if (err) throw err
-    })
-}, 3000);
-=======
 }).addTo(map);
 
 function fetchData() {
@@ -82,4 +55,3 @@ function plotStates(map, markers) {
 
 const markers = {};
 plotStates(map, markers);
->>>>>>> 661b8555c700a84ffeff9da4048dfd11e1495765

@@ -2,6 +2,18 @@ require('../scss/main.scss');
 
 const map = L.map('mapid').setView([47.115, 2.548828], 6);
 
+let unixDateAjd = Math.round((new Date()).getTime() / 1000);
+let unixDateHier = Math.round(((new Date()).getTime() / 1000) - 1);
+
+
+let d = new Date();
+Math.round(d.setDate(d.getDate() - 1) / 1000);
+
+
+console.log(unixDateAjd);
+console.log(d);
+
+
 
 L.tileLayer('https://api.mapbox.com/styles/v1/geoffroycarette/cjqxkkqxb15fm2rlqvssrl8r6/tiles/256/{z}/{x}/{y}?access_token={accessToken}', {
     maxZoom: 18,
@@ -15,15 +27,18 @@ function fetchData() {
             return res.json();
         })
         .then((res) => {
-            for (let i = 0; i < res.states.length; i++) {
-                let allCountry = res.states[i][2];
+            
+            if( allCountry.length === 0 ){
+                res['states'].forEach( (element)=>{
+                    if( element[2].length >  0 ){
+                        allCountry.push(element[2]);
+                    }
+                });
 
-                // let unique = [...new Set(allCountry)];
-                // console.log(unique);
-
-                let select = document.querySelector('#country');
-                select.options[select.options.length] = new Option(allCountry, 'value_' + i);
+                createListDeroulante( allCountry );
             }
+
+
             return res.states.filter((state) => {
                 return (state[2] === 'France') && (state[5]) && (state[6]);
             });
@@ -51,5 +66,16 @@ function plotStates(map, markers) {
     });
 }
 
+function createListDeroulante(allCountry){
+    let uniq = [...new Set(allCountry)];
+    allCountry = uniq;
+    allCountry.sort();
+    let select = document.querySelector('#country');
+    allCountry.forEach( (element) =>{
+        select.options[select.options.length] = new Option(element, element);
+    });   
+}
+
 const markers = {};
+var allCountry = [];
 plotStates(map, markers);

@@ -96,17 +96,6 @@
 __webpack_require__(/*! ../scss/main.scss */ "./assets/scss/main.scss");
 
 const map = L.map('mapid').setView([47.115, 2.548828], 6);
-let a = 2;
-// var marker = L.marker([48.8534, 2.3488]).addTo(mymap);
-// var marker = L.marker([49.8534, 2.3488]).addTo(mymap); 
-// var leafletId = marker._leaflet_id;
-
-// for (let i = 0; i < 10; i++) {
-// lat = Math.floor(Math.random() * 101);
-// lng = Math.floor(Math.random() * 101);
-
-// console.log(leafletId);
-// }
 
 
 L.tileLayer('https://api.mapbox.com/styles/v1/geoffroycarette/cjqxkkqxb15fm2rlqvssrl8r6/tiles/256/{z}/{x}/{y}?access_token={accessToken}', {
@@ -121,6 +110,15 @@ function fetchData() {
             return res.json();
         })
         .then((res) => {
+            for (let i = 0; i < res.states.length; i++) {
+                let allCountry = res.states[i][2];
+
+                // let unique = [...new Set(allCountry)];
+                // console.log(unique);
+
+                let select = document.querySelector('#country');
+                select.options[select.options.length] = new Option(allCountry, 'value_' + i);
+            }
             return res.states.filter((state) => {
                 return (state[2] === 'France') && (state[5]) && (state[6]);
             });
@@ -131,11 +129,11 @@ function fetchData() {
 }
 
 function plotStates(map, markers) {
-    fetchData().then(function(states) {
+    fetchData().then(function (states) {
         states.forEach((state) => {
             const lat = state[6],
-                  lng = state[5],
-                  icao24 = state[0];
+                lng = state[5],
+                icao24 = state[0];
 
             if (markers[icao24]) {
                 markers[icao24].setLatLng([lat, lng]);
@@ -151,6 +149,16 @@ function plotStates(map, markers) {
 const markers = {};
 plotStates(map, markers);
 
+
+var test = new Date();
+
+var aujourdhui = Math.round((new Date()).getTime()/1000);
+
+var hier = Math.round((new Date().setTime(new Date().getTime() - 86400000))/1000);
+
+console.log(test);
+console.log (aujourdhui);
+console.log(hier);
 
 /***/ }),
 

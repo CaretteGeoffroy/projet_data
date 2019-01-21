@@ -53,3 +53,14 @@ function plotStates(map, markers) {
 
 const markers = {};
 plotStates(map, markers);
+
+
+var test = new Date();
+
+var aujourdhui = Math.round(new Date().getTime()/1000);
+
+var hier = Math.round((new Date().setTime(new Date().getTime() - 86400000))/1000);
+
+console.log(test);
+console.log (aujourdhui);
+console.log(hier);

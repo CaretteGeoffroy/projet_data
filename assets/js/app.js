@@ -1,9 +1,11 @@
 require('../scss/main.scss');
 
 const map = L.map('mapid').setView([47.115, 2.548828], 6);
+
 const markers = {};
 var allCountry = [];
 var markersLayer = new L.LayerGroup();
+
 let stateValue;
 let infoPlane = [];
 
@@ -29,7 +31,6 @@ function fetchData() {
                 createListDeroulante( allCountry );
             }
 
-            console.log(stateValue);
             return res.states.filter((state) => {
                 return (state[2] === stateValue) && (state[5]) && (state[6]);
             });

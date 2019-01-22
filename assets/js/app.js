@@ -1,9 +1,11 @@
 require('../scss/main.scss');
 
 const map = L.map('mapid').setView([47.115, 2.548828], 6);
+
 const markers = {};
 var allCountry = [];
 var markersLayer = new L.LayerGroup();
+
 let stateValue;
 
 L.tileLayer('https://api.mapbox.com/styles/v1/geoffroycarette/cjqxkkqxb15fm2rlqvssrl8r6/tiles/256/{z}/{x}/{y}?access_token={accessToken}', {
@@ -28,7 +30,6 @@ function fetchData() {
                 createListDeroulante( allCountry );
             }
 
-            console.log(stateValue);
             return res.states.filter((state) => {
                 return (state[2] === stateValue) && (state[5]) && (state[6]);
             });
@@ -97,12 +98,6 @@ function changeEventHandler(event) {
     markersLayer = new L.LayerGroup();
     stateValue = event.target.value;
 }
-
-
-
-
-
-
 
 // var test = new Date();
 

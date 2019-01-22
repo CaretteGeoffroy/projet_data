@@ -51,14 +51,10 @@ function plotStates(map, markers) {
                 vitesse = state[9];
 
             if (markers[icao24]) {
-                markers[icao24].setLatLng([lat, lng]);
-            } else {
-                markers[icao24] = L.marker([lat, lng]);
-                markers[icao24].on('click', markerOnClick).addTo(markersLayer);
-                map.addLayer(markersLayer);
+                markers[icao24].on('click', markerOnClick).setLatLng([lat, lng]);
 
-                var popup = L.popup();
-                
+                let popup = L.popup();
+
                 function markerOnClick(e) {
                     popup
                         .setLatLng(e.latlng)
@@ -70,7 +66,10 @@ function plotStates(map, markers) {
                             "<b>Vitesse : </b>" + vitesse + "<br/>" )
                         .openOn(map);
                 };
-
+            } else {
+                markers[icao24] = L.marker([lat, lng]);
+                markers[icao24].addTo(markersLayer);
+                map.addLayer(markersLayer);
             }
         });
         setTimeout(() => plotStates(map, markers), 15000);

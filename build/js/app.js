@@ -96,9 +96,11 @@
 __webpack_require__(/*! ../scss/main.scss */ "./assets/scss/main.scss");
 
 const map = L.map('mapid').setView([47.115, 2.548828], 6);
+
 const markers = {};
 var allCountry = [];
 var markersLayer = new L.LayerGroup();
+
 let stateValue;
 
 L.tileLayer('https://api.mapbox.com/styles/v1/geoffroycarette/cjqxkkqxb15fm2rlqvssrl8r6/tiles/256/{z}/{x}/{y}?access_token={accessToken}', {
@@ -123,7 +125,6 @@ function fetchData() {
                 createListDeroulante( allCountry );
             }
 
-            console.log(stateValue);
             return res.states.filter((state) => {
                 return (state[2] === stateValue) && (state[5]) && (state[6]);
             });
@@ -145,14 +146,10 @@ function plotStates(map, markers) {
                 vitesse = state[9];
 
             if (markers[icao24]) {
-                markers[icao24].setLatLng([lat, lng]);
-            } else {
-                markers[icao24] = L.marker([lat, lng]);
-                markers[icao24].on('click', markerOnClick).addTo(markersLayer);
-                map.addLayer(markersLayer);
+                markers[icao24].on('click', markerOnClick).setLatLng([lat, lng]);
 
-                var popup = L.popup();
-                
+                let popup = L.popup();
+
                 function markerOnClick(e) {
                     popup
                         .setLatLng(e.latlng)
@@ -164,18 +161,10 @@ function plotStates(map, markers) {
                             "<b>Vitesse : </b>" + vitesse + "<br/>" )
                         .openOn(map);
                 };
-
-                // var popup = L.popup();
-
-                // function onMapClick(e) {
-                //     popup
-                //         .setLatLng(e.latlng)
-                //         .setContent("You clicked the map at " + e.latlng.toString())
-                //         .openOn(map);
-                // }
-
-                // marker.on('click', onMapClick);
-
+            } else {
+                markers[icao24] = L.marker([lat, lng]);
+                markers[icao24].addTo(markersLayer);
+                map.addLayer(markersLayer);
             }
         });
         setTimeout(() => plotStates(map, markers), 15000);
@@ -203,12 +192,6 @@ function changeEventHandler(event) {
     markersLayer = new L.LayerGroup();
     stateValue = event.target.value;
 }
-
-
-
-
-
-
 
 // var test = new Date();
 

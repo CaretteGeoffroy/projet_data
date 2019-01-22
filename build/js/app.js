@@ -96,7 +96,10 @@
 __webpack_require__(/*! ../scss/main.scss */ "./assets/scss/main.scss");
 
 const map = L.map('mapid').setView([47.115, 2.548828], 6);
-
+const markers = {};
+var allCountry = [];
+var markersLayer = new L.LayerGroup();
+let stateValue;
 
 L.tileLayer('https://api.mapbox.com/styles/v1/geoffroycarette/cjqxkkqxb15fm2rlqvssrl8r6/tiles/256/{z}/{x}/{y}?access_token={accessToken}', {
     maxZoom: 18,
@@ -110,17 +113,19 @@ function fetchData() {
             return res.json();
         })
         .then((res) => {
-            for (let i = 0; i < res.states.length; i++) {
-                let allCountry = res.states[i][2];
+            if( allCountry.length === 0 ){
+                res['states'].forEach( (element)=>{
+                    if( element[2].length >  0 ){
+                        allCountry.push(element[2]);
+                    }
+                });
 
-                // let unique = [...new Set(allCountry)];
-                // console.log(unique);
-
-                let select = document.querySelector('#country');
-                select.options[select.options.length] = new Option(allCountry, 'value_' + i);
+                createListDeroulante( allCountry );
             }
+
+            console.log(stateValue);
             return res.states.filter((state) => {
-                return (state[2] === 'France') && (state[5]) && (state[6]);
+                return (state[2] === stateValue) && (state[5]) && (state[6]);
             });
         })
         .catch((err) => {
@@ -133,32 +138,87 @@ function plotStates(map, markers) {
         states.forEach((state) => {
             const lat = state[6],
                 lng = state[5],
-                icao24 = state[0];
+                icao24 = state[0],
+                numAvion = state[1],
+                pays = state[2],
+                altitude = state[7],
+                vitesse = state[9];
 
             if (markers[icao24]) {
                 markers[icao24].setLatLng([lat, lng]);
             } else {
                 markers[icao24] = L.marker([lat, lng]);
-                markers[icao24].addTo(map);
+                markers[icao24].on('click', markerOnClick).addTo(markersLayer);
+                map.addLayer(markersLayer);
+
+                var popup = L.popup();
+                
+                function markerOnClick(e) {
+                    popup
+                        .setLatLng(e.latlng)
+                        .setContent(
+                            "<b>Numéro d'avion : </b>" + numAvion + "<br/>" +
+                            "<b>Pays d'origine : </b>" + pays + "<br/>" +
+                            "<b>Latitude : </b>" + lat + "<b> Longitude : </b>" + lng + "<br/>" +
+                            "<b>Altitude : </b>" + altitude + "<br/>" +
+                            "<b>Vitesse : </b>" + vitesse + "<br/>" )
+                        .openOn(map);
+                };
+
+                // var popup = L.popup();
+
+                // function onMapClick(e) {
+                //     popup
+                //         .setLatLng(e.latlng)
+                //         .setContent("You clicked the map at " + e.latlng.toString())
+                //         .openOn(map);
+                // }
+
+                // marker.on('click', onMapClick);
+
             }
         });
         setTimeout(() => plotStates(map, markers), 15000);
     });
 }
 
-const markers = {};
+function createListDeroulante(allCountry){
+    let uniq = [...new Set(allCountry)];
+    allCountry = uniq;
+    allCountry.sort();
+    let select = document.querySelector('#country');
+    allCountry.forEach( (element) =>{
+        select.options[select.options.length] = new Option(element, element);
+    });   
+}
+
 plotStates(map, markers);
 
+document.addEventListener('DOMContentLoaded',function() {
+    document.querySelector('select[name="country"]').onchange=changeEventHandler;
+},false);
 
-var test = new Date();
+function changeEventHandler(event) {
+    map.removeLayer(markersLayer);
+    markersLayer = new L.LayerGroup();
+    stateValue = event.target.value;
+}
 
-var aujourdhui = Math.round((new Date()).getTime()/1000);
 
-var hier = Math.round((new Date().setTime(new Date().getTime() - 86400000))/1000);
 
-console.log(test);
-console.log (aujourdhui);
-console.log(hier);
+
+
+
+
+// var test = new Date();
+
+// var aujourdhui = Math.round(new Date().getTime()/1000);
+
+// var hier = Math.round((new Date().setTime(new Date().getTime() - 86400000))/1000);
+
+// console.log(test);
+// console.log (aujourdhui);
+// console.log(hier);
 
 /***/ }),
 

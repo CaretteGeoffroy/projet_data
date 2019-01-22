@@ -1,8 +1,16 @@
 require('../scss/main.scss');
 
+const map = L.map('mapid').setView([47.115, 2.548828], 6);
+let markers = {};
+let allCountry = [];
+let markersLayer = new L.LayerGroup();
+let stateValue;
 
-
-
+L.tileLayer('https://api.mapbox.com/styles/v1/geoffroycarette/cjqxkkqxb15fm2rlqvssrl8r6/tiles/256/{z}/{x}/{y}?access_token={accessToken}', {
+    maxZoom: 18,
+    id: 'mapbox.streets',
+    accessToken: 'pk.eyJ1IjoiZ2VvZmZyb3ljYXJldHRlIiwiYSI6ImNqcXh1c20ycTBiZm80M2tlMnBlazFsc3QifQ.Nj35s8pJZFDudfEJGWHpDA'
+}).addTo(map);
 
 function fetchData() {
     return fetch("https://opensky-network.org/api/states/all")
@@ -20,7 +28,6 @@ function fetchData() {
                 createListDeroulante( allCountry );
             }
 
-            console.log(stateValue);
             return res.states.filter((state) => {
                 return (state[2] === stateValue) && (state[5]) && (state[6]);
             });
@@ -59,19 +66,6 @@ function createListDeroulante(allCountry){
     });   
 }
 
-const markers = {};
-var allCountry = [];
-const map = L.map('mapid').setView([47.115, 2.548828], 6);
-var markersLayer = new L.LayerGroup();
-let stateValue;
-L.tileLayer('https://api.mapbox.com/styles/v1/geoffroycarette/cjqxkkqxb15fm2rlqvssrl8r6/tiles/256/{z}/{x}/{y}?access_token={accessToken}', {
-    maxZoom: 18,
-    id: 'mapbox.streets',
-    accessToken: 'pk.eyJ1IjoiZ2VvZmZyb3ljYXJldHRlIiwiYSI6ImNqcXh1c20ycTBiZm80M2tlMnBlazFsc3QifQ.Nj35s8pJZFDudfEJGWHpDA'
-}).addTo(map);
-
-
-
 plotStates(map, markers);
 
 document.addEventListener('DOMContentLoaded',function() {
@@ -83,3 +77,5 @@ function changeEventHandler(event) {
     markersLayer = new L.LayerGroup();
     stateValue = event.target.value;
 }
+
+console.log(markers);

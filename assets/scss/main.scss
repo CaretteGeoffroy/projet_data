@@ -1,6 +1,7 @@
-body{
+body {
+    padding: 0;
     margin: 0;
-}
+  }
 
 #mapid { 
     height: 100vh;
@@ -36,9 +37,18 @@ body{
     border-bottom: 1px solid #021456 !important;
 }
 
-//style paje 404//
-
-body {
+#country{
+    position: absolute;
+    z-index: 9999;
+}
+//style page 404//
+  
+* {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+  }
+  
+  body {
     padding: 0;
     margin: 0;
   }
@@ -79,7 +89,7 @@ body {
     -webkit-transform: translateX(-50%);
         -ms-transform: translateX(-50%);
             transform: translateX(-50%);
-    background: url('media/bg.jpg') no-repeat;
+    background: url('../img/bg.jpg') no-repeat;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-size: cover;
@@ -119,3 +129,10 @@ body {
     -webkit-box-shadow: 0px 4px 15px -5px #0046d5;
             box-shadow: 0px 4px 15px -5px #0046d5;
   }
+  
+  
+  @media only screen and (max-width: 767px) {
+      .notfound .notfound-404 {
+        height: 142px;
+      }
+    }

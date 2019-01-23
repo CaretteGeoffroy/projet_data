@@ -1,5 +1,4 @@
 <?php
-
 require_once 'vendor/autoload.php';
 
 $router = new AltoRouter();
@@ -7,6 +6,7 @@ $router = new AltoRouter();
 /**Création des routes */
 
 $router->map('GET', '/', ['c' => 'HomeController', 'a' => 'index']);
+$router->map('GET', '/json', ['c' => 'HomeController', 'a' => 'apiJSON']);
 
 $match = $router->match();
 

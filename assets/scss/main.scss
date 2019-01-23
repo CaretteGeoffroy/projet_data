@@ -45,6 +45,23 @@ body {
     z-index: 9999;
 }
 
+.picto{
+    position: absolute;
+    z-index: 999;
+    height: 120px;
+    top: 650px;
+    
+}
+
+.window{
+    background-color: white;
+    position: absolute;
+    height:150px;
+    width:150px;
+    background-position: center;
+    border: 2px solid red;
+}
+
 
 //style page 404//
 
@@ -95,7 +112,7 @@ body {
     -webkit-transform: translateX(-50%);
         -ms-transform: translateX(-50%);
             transform: translateX(-50%);
-    background: url('../img/bg.jpg') no-repeat;
+    background: url('./img/bg.jpg') no-repeat;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-size: cover;

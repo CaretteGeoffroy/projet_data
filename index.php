@@ -6,7 +6,7 @@ $router = new AltoRouter();
 
 /**Création des routes */
 
-$router->map('GET', './autoload/npm', ['c' => 'HomeController', 'a' => 'index']);
+$router->map('GET', '/projet_data/', ['c' => 'HomeController', 'a' => 'index']);
 
 $match = $router->match();
 

@@ -2,10 +2,6 @@ require('../scss/main.scss');
 
 const map = L.map('mapid').setView([47.115, 2.548828], 6);
 
-let markers = {};
-var allCountry = [];
-var markersLayer = new L.LayerGroup();
-
 let allCountry = [];
 let markersLayer = new L.LayerGroup();
 let stateValue;

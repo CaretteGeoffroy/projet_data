@@ -2,12 +2,11 @@ require('../scss/main.scss');
 
 const map = L.map('mapid').setView([47.115, 2.548828], 6);
 
-const markers = {};
+let markers = {};
 var allCountry = [];
 var markersLayer = new L.LayerGroup();
 
 let stateValue;
-let infoPlane = [];
 
 L.tileLayer('https://api.mapbox.com/styles/v1/geoffroycarette/cjqxkkqxb15fm2rlqvssrl8r6/tiles/256/{z}/{x}/{y}?access_token={accessToken}', {
     maxZoom: 18,
@@ -42,31 +41,27 @@ function fetchData() {
 
 function plotStates(map, markers) {
     fetchData().then(function (states) {
-        infoPlane = [];
-        i = 0;
+        console.log(markersLayer);
         states.forEach((state) => {
             
-                infoPlane[i] = {lat: state[6],
-                                lng: state[5],
-                                icao24 : state[0],
-                                numAvion : state[1],
-                                pays : state[2],
-                                altitude : state[7],
-                                vitesse : state[9]
-                };
-
-            if (markers[infoPlane[i].icao24 ]) {
-                markers[infoPlane[i].icao24].on('click', markerOnClick).setLatLng([infoPlane[i].lat, infoPlane[i].lng]);
-
+            if (markers[state[0]]) {
                 
-
+                markers[state[0]].on('click', markerOnClick).setLatLng([state[6], state[5]]);
+                markers[state[0]].options.lat = state[6];
+                markers[state[0]].options.lng = state[5];
+                markers[state[0]].options.icao24 = state[0];
+                markers[state[0]].options.numAvion = state[1];  
+                markers[state[0]].options.pays = state[2];
+                markers[state[0]].options.altitude = state[7];
+                markers[state[0]].options.vitesse = state[9];
             } else {
-                markers[infoPlane[i].icao24] = L.marker([infoPlane[i].lat, infoPlane[i].lng], {id : i });
-                markers[infoPlane[i].icao24].addTo(markersLayer).on('click', markerOnClick);
+                
+                markers[state[0]] = L.marker([state[6], state[5]], {lat: state[6], lng: state[5], icao24 : state[0], numAvion : state[1], pays : state[2], altitude : state[7], vitesse : state[9] });
+                markers[state[0]].addTo(markersLayer).on('click', markerOnClick);
                 map.addLayer(markersLayer);
+                
             }
 
-            i++;
         });
         setTimeout(() => plotStates(map, markers), 15000);
     });
@@ -89,6 +84,7 @@ document.addEventListener('DOMContentLoaded',function() {
 },false);
 
 function changeEventHandler(event) {
+    
     map.removeLayer(markersLayer);
     markersLayer = new L.LayerGroup();
     stateValue = event.target.value;
@@ -97,15 +93,13 @@ function changeEventHandler(event) {
 
                 
 function markerOnClick(e) {
-    console.log(infoPlane[e.target.options.id]["lat"]);
-    console.log(infoPlane[e.target.options.id]["lng"]);
     var popup = L.popup()
-    .setLatLng([infoPlane[e.target.options.id]["lat"], infoPlane[e.target.options.id]["lng"]])
-    .setContent("<b>Numéro d'avion : </b>" + infoPlane[e.target.options.id]["numAvion"] + "<br/>" +
-    "<b>Pays d'origine : </b>" + infoPlane[e.target.options.id]["pays"] + "<br/>" +
-    "<b>Latitude : </b>" + infoPlane[e.target.options.id]["lat"] + "<b> Longitude : </b>" + infoPlane[e.target.options.id]["lng"] + "<br/>" +
-    "<b>Altitude : </b>" + infoPlane[e.target.options.id]["altitude"] + "<br/>" +
-    "<b>Vitesse : </b>" + infoPlane[e.target.options.id]["vitesse"] + " m/s <br/>")
+    .setLatLng([e.target.options.lat, e.target.options.lng])
+    .setContent("<b>Numéro d'avion : </b>" + e.target.options.numAvion + "<br/>" +
+    "<b>Pays d'origine : </b>" + e.target.options.pays + "<br/>" +
+    "<b>Latitude : </b>" + e.target.options.lat + "<b> Longitude : </b>" + e.target.options.lng + "<br/>" +
+    "<b>Altitude : </b>" + e.target.options.altitude + "<br/>" +
+    "<b>Vitesse : </b>" + e.target.options.vitesse + " m/s <br/>")
     .openOn(map);
 };
 

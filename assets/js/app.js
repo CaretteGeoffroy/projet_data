@@ -133,6 +133,7 @@ document.onreadystatechange = function () {
             clearInterval( chrono );
             stateValue = monSelect.value;
             drawMap();
+            map.flyTo([47.115, 2.548828], 3);
             chrono = setInterval( deplacePlane, 16000 );
         })
     }

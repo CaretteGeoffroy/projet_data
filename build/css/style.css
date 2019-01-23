@@ -5,6 +5,11 @@ body {
 #mapid {
   height: 100vh; }
 
+#country {
+  transition-duration: 5s;
+  opacity: 0;
+  height: 45px; }
+
 .logo {
   position: absolute;
   z-index: 999;
@@ -19,15 +24,13 @@ body {
   right: 15px !important; }
 
 .leaflet-control-zoom-in {
+  border-bottom: 1px solid #021456 !important;
   background-color: #5267AF !important;
   color: white !important; }
 
 .leaflet-control-zoom-out {
   background-color: #5267AF !important;
   color: white !important; }
-
-.leaflet-bar a {
-  border-bottom: 1px solid #021456 !important; }
 
 #country {
   position: absolute;

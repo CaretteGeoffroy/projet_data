@@ -233,6 +233,9 @@ document.onreadystatechange = function () {
     }
 }
 
+
+
+
 // var test = new Date();
 
 // var aujourdhui = Math.round(new Date().getTime()/1000);
@@ -242,6 +245,7 @@ document.onreadystatechange = function () {
 // console.log(test);
 // console.log (aujourdhui);
 // console.log(hier);
+
 
 /***/ }),
 

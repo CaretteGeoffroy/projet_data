@@ -138,6 +138,9 @@ document.onreadystatechange = function () {
     }
 }
 
+
+
+
 // var test = new Date();
 
 // var aujourdhui = Math.round(new Date().getTime()/1000);

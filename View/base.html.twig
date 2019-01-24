@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./assets/carte/leaflet.css">
     <script src="./assets/carte/leaflet-src.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
         crossorigin="anonymous">
     <link rel="stylesheet" href="./build/css/style.css">
@@ -16,8 +17,7 @@
 
 <body>
     <img src="./assets/img/logo.svg" alt="logo" class="logo">
-    
-    <div class="d-flex justify-content-center">
+       <div class="d-flex justify-content-center">
         <select id="country" name="country" class="form-control w-25 mt-3">
             <option>Veuillez choisir un pays</option>
         </select>
@@ -26,8 +26,181 @@
     <div id="mapid">
     </div>
 
-    <a href="http://localhost/projet_data/"><img src="./assets/img/logo_picto3.svg" alt="picto" class="picto" >
+    <div id="window">
+    <img src="./assets/img/unchecked.svg" alt="croix" class="croix">
 
+<div class="graphique">
+
+      <!-- Graphique 1 type barre pour nombre d'avions par jours et par pays -->
+
+
+    <div style="width: 20%">
+            <h4>Nombre d'avions par jour </h4>
+    <canvas id="myChart1" width="400" height="400"></canvas>
+    </div>
+
+    <script>
+    var ctx = document.getElementById("myChart1").getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+            datasets: [{
+                label: 'avions',
+                data: [12, 19, 3, 5, 2, 3],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            }
+        }
+    });
+    </script>
+
+    <!-- Graphique 2 type courbes nombre total de vols par heure -->
+
+
+
+
+    <div style="width: 20%">
+        <h4>Nombre total de vols par heure</h4>
+    <canvas id="myChart2" width="400" height="400"></canvas>
+    </div>
+    
+    
+    <script>
+    var ctx2 = document.getElementById("myChart2").getContext('2d');
+    var myLineChart2 = new Chart(ctx2, {
+    type: 'line',
+        data: {
+            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+            datasets: [{
+                label: ' vols',
+                data: [12, 19, 3, 5, 2, 3],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            }
+        }
+    });
+    </script>
+
+<!-- Graphique 3 type fromage par pays -->
+
+
+
+
+    <div style="width: 25%">
+        <h4>Nombre d'avions par pays</h4>
+            <form method="post" action="ton_action">
+                <p>
+                    <label for="le_nom">Selectionnez votre pays ici</label><br />
+                    <select name="le_nom" id="le_nom">
+                        <option value="fr">France</option>
+                        <option value="Sui">Suisse</option>
+                        <option value="esp">Espagne</option>
+                        <option value="alm">Allemagne</option>
+                        <option value="eng">Angleterre</option>
+                        <option value="por">Portugal</option>
+                                
+                    </select>
+                </p>
+            </form>
+                <canvas id="myChart3" width="400" height="400"></canvas>
+    </div>
+    
+    <script>
+    var ctx3 = document.getElementById("myChart3").getContext('2d');
+    var myPieChart3 = new Chart(ctx3,{
+    type: 'pie',
+        data: {
+            labels: ["France", "Suisse", "Espagne", "Allemagne", "Angleterre", "Portugal"],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            }
+        }
+    });
+    </script>
+
+</div>
+   
+    </div>
+
+    <img src="./assets/img/logo_projet5.svg" alt="picto" class="picto">
+
+    
     
 
     <script src="./build/js/app.js"></script>

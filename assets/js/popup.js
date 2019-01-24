@@ -1,6 +1,7 @@
-function PopupCentrer(page,largeur,hauteur,options) { 
-    var top=(screen.height-hauteur)/2; 
-    var left=(screen.width-largeur)/2; 
+const picto = document.querySelector('.picto');
+const myWindow = document.querySelector('#window');
 
-    window.open(page,"","top="+top+",left="+left+",width="+largeur+",height="+hauteur+","+options); 
-} 
+
+picto.addEventListener('click', function(){
+    console.log('coucou');
+})

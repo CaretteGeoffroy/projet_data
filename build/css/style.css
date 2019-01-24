@@ -39,16 +39,37 @@ body {
 .picto {
   position: absolute;
   z-index: 999;
-  height: 120px;
-  top: 650px; }
+  height: 75px;
+  top: 620px;
+  margin-left: 20px; }
+  .picto:hover {
+    cursor: pointer; }
 
-.window {
-  background-color: white;
+#window {
+  background-color: rgba(255, 255, 255, 0.9);
   position: absolute;
-  height: 150px;
-  width: 150px;
-  background-position: center;
-  border: 2px solid red; }
+  height: 95vh;
+  width: 1400px;
+  border: 1px solid black;
+  top: 17px;
+  z-index: 9999;
+  margin-left: 110px;
+  display: none; }
+
+.croix {
+  height: 45px;
+  width: 45px;
+  position: absolute;
+  left: 1353px;
+  z-index: 9999; }
+  .croix:hover {
+    cursor: pointer; }
+
+.graphique {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  z-index: 9999; }
 
 * {
   -webkit-box-sizing: border-box;

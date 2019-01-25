@@ -1,6 +1,9 @@
 body {
   padding: 0;
   margin: 0; }
+  body #data {
+    width: 50%;
+    height: 50%; }
 
 #mapid {
   height: 100vh; }

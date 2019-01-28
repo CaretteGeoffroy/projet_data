@@ -1,0 +1,14 @@
+@media (min-width: 576px) and (max-width: 767px) {
+    body {
+        #country {
+            width: 50% !important;
+        }
+
+        #window {
+            height: 50vh;
+            top: 25vh;
+            width: 90%;
+            left: 5%;
+        }
+    }
+}

@@ -345,9 +345,9 @@ function loadGraph() {
   !*** ./assets/scss/main.scss ***!
   \*******************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-// extracted by mini-css-extract-plugin
+throw new Error("Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):\nModuleBuildError: Module build failed (from ./node_modules/sass-loader/lib/loader.js):\n\n        }\n        ^\n      Invalid CSS after \"        }\": expected selector or at-rule, was \"}\"\n      in /home/stagiaire/projets/web/projet_data/projet_data/assets/scss/main.scss (line 215, column 10)\n    at runLoaders (/home/stagiaire/projets/web/projet_data/projet_data/node_modules/webpack/lib/NormalModule.js:301:20)\n    at /home/stagiaire/projets/web/projet_data/projet_data/node_modules/loader-runner/lib/LoaderRunner.js:367:11\n    at /home/stagiaire/projets/web/projet_data/projet_data/node_modules/loader-runner/lib/LoaderRunner.js:233:18\n    at context.callback (/home/stagiaire/projets/web/projet_data/projet_data/node_modules/loader-runner/lib/LoaderRunner.js:111:13)\n    at Object.render [as callback] (/home/stagiaire/projets/web/projet_data/projet_data/node_modules/sass-loader/lib/loader.js:52:13)\n    at Object.done [as callback] (/home/stagiaire/projets/web/projet_data/projet_data/node_modules/neo-async/async.js:8077:18)\n    at options.error (/home/stagiaire/projets/web/projet_data/projet_data/node_modules/node-sass/lib/index.js:294:32)");
 
 /***/ })
 

@@ -62,10 +62,11 @@ body {
   display: none; }
 
 .croix {
-  height: 45px;
-  width: 45px;
+  height: 35px;
+  width: 35px;
   position: absolute;
-  left: 1353px;
+  left: 1364px;
+  top: -3px;
   z-index: 9999; }
   .croix:hover {
     cursor: pointer; }
@@ -74,7 +75,9 @@ body {
   display: flex;
   justify-content: space-between;
   position: absolute;
-  z-index: 9999; }
+  z-index: 9999;
+  flex-direction: row-reverse;
+  align-items: center; }
 
 * {
   -webkit-box-sizing: border-box;
@@ -151,6 +154,15 @@ body {
 @media only screen and (max-width: 767px) {
   .notfound .notfound-404 {
     height: 142px; } }
+
+@media (max-width: 1300px) {
+  #window {
+    margin-left: 255px;
+    top: 24px; } }
+
+@media screen and (max-width: 1300px) and (max-width: 1920px) {
+  .picto {
+    top: 890px; } }
 
 
 /*# sourceMappingURL=style.css.map*/

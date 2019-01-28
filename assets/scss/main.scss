@@ -73,16 +73,13 @@ body {
 #window {
     background-color: rgba(255, 255, 255, 0.9);
     position: absolute;
-    height: 95vh;
-    width: 1400px;
+    height: 96vh;
+    width: 80%;
+    top: 2vh;
+    left: 10%;
     border: 1px solid black;
-    top: 17px;
     z-index: 9999;
-    margin-left: 110px;
     display: none;
-
-
-
 }
 
 
@@ -91,7 +88,7 @@ body {
     height: 35px;
     width: 35px;
     position: absolute;
-    left: 1364px;
+    right: 0;
     top: -3px;
     z-index: 9999;
 
@@ -110,8 +107,6 @@ body {
     flex-direction: row-reverse;
     align-items: center;
 }
-
-
 
 //style page 404//
 
@@ -206,11 +201,6 @@ body {
 }
 
 @media (max-width:1300px) {
-    #window {
-        margin-left: 255px;
-        top: 24px;
-    }
-
     .picto {
         top: 890px;
 

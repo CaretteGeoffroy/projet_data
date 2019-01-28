@@ -108,6 +108,9 @@ let data;
 let selectedCountry;
 let chrono;
 let countPlanesOnFly = 0;
+let listCountPlane = new Array();
+let myChart = null;
+let listTimePlane = new Array();
 
 L.tileLayer('https://api.mapbox.com/styles/v1/geoffroycarette/cjqxkkqxb15fm2rlqvssrl8r6/tiles/256/{z}/{x}/{y}?access_token={accessToken}', {
     maxZoom: 18,
@@ -123,6 +126,7 @@ function updateData() {
                 data = json.states;
                 listCountry();
                 flyingPlanes();
+                currentTime();
             })
         );
 }
@@ -131,7 +135,7 @@ function updateData() {
 function listCountry() {
     if (allCountry.length === 0) {
         data.forEach((element) => {
-            if (element[2].length > 0) {
+            if (element[2].length > 0  ) {
                 allCountry.push(element[2]);
             }
         });
@@ -242,133 +246,32 @@ function flyingPlanes() {
             countPlanesOnFly++
         }
     }
-    console.log(countPlanesOnFly);
+    
+    if( listCountPlane.length < 10 ){
+        listCountPlane.push( countPlanesOnFly );
+    }else{
+        listCountPlane.shift();
+        listCountPlane.push( countPlanesOnFly );
+    }
+    
+    loadGraph();
+    
+    // console.log(ArrayPlanesOnFly);
 }
 
 function currentTime() {
     date = new Date();
     let time = date.toLocaleTimeString();
 
-    console.log(time);
+    if( listTimePlane.length < 10 ){
+        listTimePlane.push( time );
+    }else{
+        listTimePlane.shift();
+        listTimePlane.push( time );
+    }
+
+    loadGraph();
 }
-
-function addData(chart, label, data) {
-    chart.data.labels.push(label);
-    chart.data.datasets.forEach((dataset) => {
-        dataset.data.push(data);
-    });
-    chart.update();
-}
-
-var ctx = document.getElementById('graphique1').getContext('2d');
-var chart = new Chart(ctx, {
-    // The type of chart we want to create
-    type: 'line',
-
-    // The data for our dataset
-    data: {
-        labels: [],
-        datasets: [{
-            label: "My First dataset",
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: [],
-        }]
-    },
-
-    // Configuration options go here
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true,
-                    userCallback: function (label, index, labels) {
-                        // when the floored value is the same as the value we have a whole number
-                        if (Math.floor(label) === label) {
-                            return label;
-                        }
-                    },
-                }
-            }],
-        },
-    }
-});
-
-var ctx2 = document.getElementById("graphique2").getContext('2d');
-var myLineChart2 = new Chart(ctx2, {
-    type: 'line',
-    data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        datasets: [{
-            label: ' vols',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
-});
-
-var ctx3 = document.getElementById("graphique3").getContext('2d');
-var myPieChart3 = new Chart(ctx3, {
-    type: 'pie',
-    data: {
-        labels: ["France", "Suisse", "Espagne", "Allemagne", "Angleterre", "Portugal"],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
-});
 
 // fonctions pictograme et fenetre information
 const picto = document.querySelector('.picto');
@@ -377,11 +280,53 @@ const croix = document.querySelector('.croix');
 
 picto.addEventListener('click', function () {
     myWindow.style.display = 'block';
+    clearInterval(chrono);
+    chrono = setInterval(updateData, 16000);
+
 })
 
 croix.addEventListener('click', function () {
     myWindow.style.display = 'none';
+    clearInterval(chrono);
 })
+
+function loadGraph() {
+    if( myChart === null){
+        let ctx = document.getElementById("graphique1");
+            myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: listTimePlane,
+                    datasets: [{
+                        label: 'Nombre d\'avions en vol en temps réel (mis à jour toutes les 16 secondes)',
+                        data: listCountPlane,
+                        backgroundColor: [
+                            'rgba(0, 0, 0, 0)'
+                        ],
+                        borderColor: [
+                            'rgba(9, 132, 227,1.0)'
+                        ],
+                        borderWidth: 2,
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: false
+                            }
+                        }]
+                    }
+                }
+            });
+    }else{
+        myChart.data.datasets.data = listCountPlane;
+        myChart.data.labels = listTimePlane;
+        myChart.update();
+    }
+    
+}
+            
 
 // var test = new Date();
 

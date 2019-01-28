@@ -27,21 +27,21 @@
     </div>
 
     <div id="window">
-    <img src="./assets/img/unchecked.svg" alt="croix" class="croix">
+        <img src="./assets/img/unchecked.svg" alt="croix" class="croix">
 
-<div class="graphique">
+        <div class="graphique">
 
       <!-- Graphique 1 type barre pour nombre d'avions par jours et par pays -->
 
 
-    <div style="width: 20%">
+        <div style="width: 20%">
             <h4>Nombre d'avions par jour </h4>
-    <canvas id="myChart1" width="400" height="400"></canvas>
-    </div>
+        <canvas id="myChart1" width="400" height="400"></canvas>
+        </div>
 
-    <script>
-    var ctx = document.getElementById("myChart1").getContext('2d');
-    var myChart = new Chart(ctx, {
+        <script>
+        var ctx = document.getElementById("myChart1").getContext('2d');
+        var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
             labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
@@ -76,24 +76,24 @@
                 }]
             }
         }
-    });
-    </script>
+        });
+        </script>
 
-    <!-- Graphique 2 type courbes nombre total de vols par heure -->
-
-
+        <!-- Graphique 2 type courbes nombre total de vols par heure -->
 
 
-    <div style="width: 20%">
-        <h4>Nombre total de vols par heure</h4>
-    <canvas id="myChart2" width="400" height="400"></canvas>
-    </div>
+
+
+        <div style="width: 20%">
+            <h4>Nombre total de vols par heure</h4>
+            <canvas id="myChart2" width="400" height="400"></canvas>
+        </div>
     
     
-    <script>
-    var ctx2 = document.getElementById("myChart2").getContext('2d');
-    var myLineChart2 = new Chart(ctx2, {
-    type: 'line',
+        <script>
+        var ctx2 = document.getElementById("myChart2").getContext('2d');
+        var myLineChart2 = new Chart(ctx2, {
+        type: 'line',
         data: {
             labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
             datasets: [{
@@ -127,17 +127,17 @@
                 }]
             }
         }
-    });
-    </script>
+        });
+        </script>
 
-<!-- Graphique 3 type fromage par pays -->
-
-
+        <!-- Graphique 3 type fromage par pays -->
 
 
-    <div style="width: 25%">
-        <h4>Nombre d'avions par pays</h4>
-            <form method="post" action="ton_action">
+
+
+            <div style="width: 25%">
+                <h4>Nombre d'avions par pays</h4>
+                <form method="post" action="ton_action">
                 <p>
                     <label for="le_nom">Selectionnez votre pays ici</label><br />
                     <select name="le_nom" id="le_nom">
@@ -150,14 +150,14 @@
                                 
                     </select>
                 </p>
-            </form>
+                </form>
                 <canvas id="myChart3" width="400" height="400"></canvas>
-    </div>
+            </div>
     
-    <script>
-    var ctx3 = document.getElementById("myChart3").getContext('2d');
-    var myPieChart3 = new Chart(ctx3,{
-    type: 'pie',
+        <script>
+        var ctx3 = document.getElementById("myChart3").getContext('2d');
+        var myPieChart3 = new Chart(ctx3,{
+        type: 'pie',
         data: {
             labels: ["France", "Suisse", "Espagne", "Allemagne", "Angleterre", "Portugal"],
             datasets: [{
@@ -181,8 +181,8 @@
                 ],
                 borderWidth: 1
             }]
-        },
-        options: {
+         },
+            options: {
             scales: {
                 yAxes: [{
                     ticks: {
@@ -190,11 +190,11 @@
                     }
                 }]
             }
-        }
-    });
-    </script>
+            }
+            });
+            </script>
 
-</div>
+        </div>
    
     </div>
 

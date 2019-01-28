@@ -76,13 +76,10 @@ body {
     width:45px;
     position:absolute;
     left:1353px;
-    z-index: 9999;
-    
-    
+    z-index: 9999;    
     &:hover{
         cursor: pointer;
         }
-
 }
 
 // style des graphiques
@@ -92,6 +89,8 @@ body {
     justify-content: space-between;
     position:absolute;
     z-index: 9999;
+    flex-direction:row-reverse;
+    align-items: center;
 }
     
 

@@ -138,7 +138,7 @@ document.onreadystatechange = function () {
     }
 }
 
-// fonctions pictograme et fenetre information
+// fonctions pictograme et fenetre informations
 
 const picto = document.querySelector('.picto');
 const myWindow = document.querySelector('#window');

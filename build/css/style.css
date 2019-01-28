@@ -1,6 +1,11 @@
 body {
   padding: 0;
   margin: 0; }
+  body #data {
+    width: 50%;
+    height: 50%; }
+  body .graphic_size {
+    width: 20%; }
 
 #mapid {
   height: 100vh; }
@@ -57,10 +62,11 @@ body {
   display: none; }
 
 .croix {
-  height: 45px;
-  width: 45px;
+  height: 35px;
+  width: 35px;
   position: absolute;
-  left: 1353px;
+  left: 1364px;
+  top: -3px;
   z-index: 9999; }
   .croix:hover {
     cursor: pointer; }
@@ -76,10 +82,6 @@ body {
 * {
   -webkit-box-sizing: border-box;
   box-sizing: border-box; }
-
-body {
-  padding: 0;
-  margin: 0; }
 
 #notfound {
   position: relative;
@@ -152,6 +154,15 @@ body {
 @media only screen and (max-width: 767px) {
   .notfound .notfound-404 {
     height: 142px; } }
+
+@media (max-width: 1300px) {
+  #window {
+    margin-left: 255px;
+    top: 24px; } }
+
+@media screen and (max-width: 1300px) and (max-width: 1920px) {
+  .picto {
+    top: 890px; } }
 
 
 /*# sourceMappingURL=style.css.map*/

@@ -1,6 +1,15 @@
 body {
     padding: 0;
     margin: 0;
+
+    #data{
+        width: 50%;
+        height: 50%;
+    }
+
+    .graphic_size{
+        width: 20%;
+    }
   }
 
 #mapid { 
@@ -45,8 +54,8 @@ body {
     z-index: 9999;
 }
 
-// style pictogramme,fenetre d'information
-.picto{
+    // style pictogramme,fenetre d'information
+    .picto{
     position: absolute;
     z-index: 999;
     height: 75px;
@@ -55,6 +64,8 @@ body {
     &:hover{
     cursor: pointer;
     }
+    
+   
     
 }
 
@@ -68,14 +79,19 @@ body {
     z-index: 9999;
     margin-left: 110px;
     display: none;
+
+
     
 }
 
+
+
 .croix{
-    height:45px;
-    width:45px;
+    height:35px;
+    width:35px;
     position:absolute;
-    left:1353px;
+    left:1364px;
+    top:-3px;
     z-index: 9999;    
     &:hover{
         cursor: pointer;
@@ -102,12 +118,7 @@ body {
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
   }
-  
-  body {
-    padding: 0;
-    margin: 0;
-  }
-  
+
   #notfound {
     position: relative;
     height: 100vh;
@@ -191,3 +202,18 @@ body {
         height: 142px;
       }
     }
+
+    @media (max-width:1300px){
+        #window{
+        margin-left: 255px;
+        top:24px;
+    }
+        .picto{
+            top: 890px;   
+                 
+            }
+        }
+    }
+
+
+   

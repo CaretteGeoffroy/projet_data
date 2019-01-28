@@ -7,10 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../assets/carte/leaflet.css">
     <script src="../assets/carte/leaflet-src.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
         crossorigin="anonymous">
     <link rel="stylesheet" href="../build/css/style.css">
-    <title>Document</title>
+    <title>Skyblue</title>
 </head>
 
 <body>
@@ -24,11 +25,26 @@
     <div id="mapid">
     </div>
 
-    <div id="data">
-        <canvas id="flyingPlanes"></canvas>
+    <div id="window">
+        <img src="../assets/img/unchecked.svg" alt="croix" class="croix">
+
+        <div class="graphic_size">
+            <canvas id="graphique1"></canvas>
+        </div>
+
+        <div class="graphic_size">
+            <canvas id="graphique2"></canvas>
+        </div>
+
+        <div class="graphic_size">
+            <canvas id="graphique3"></canvas>
+        </div>
     </div>
 
-    
+    <img src="../assets/img/logo_projet5.svg" alt="picto" class="picto">
+
+
+
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -39,7 +55,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js" integrity="sha256-MZo5XY1Ah7Z2Aui4/alkfeiq3CopMdV/bbkc/Sh41+s="
         crossorigin="anonymous"></script>
     <script src="../build/js/app.js"></script>
-    
+
 </body>
 
 </html>

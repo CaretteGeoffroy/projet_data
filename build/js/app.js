@@ -245,7 +245,7 @@ function flyingPlanes() {
     console.log(countPlanesOnFly);
 }
 
-function currentTime(){
+function currentTime() {
     date = new Date();
     let time = date.toLocaleTimeString();
 
@@ -260,7 +260,7 @@ function addData(chart, label, data) {
     chart.update();
 }
 
-var ctx = document.getElementById('flyingPlanes').getContext('2d');
+var ctx = document.getElementById('graphique1').getContext('2d');
 var chart = new Chart(ctx, {
     // The type of chart we want to create
     type: 'line',
@@ -277,17 +277,16 @@ var chart = new Chart(ctx, {
     },
 
     // Configuration options go here
-    options : {
+    options: {
         scales: {
             yAxes: [{
                 ticks: {
                     beginAtZero: true,
-                    userCallback: function(label, index, labels) {
+                    userCallback: function (label, index, labels) {
                         // when the floored value is the same as the value we have a whole number
                         if (Math.floor(label) === label) {
                             return label;
                         }
-   
                     },
                 }
             }],
@@ -295,23 +294,94 @@ var chart = new Chart(ctx, {
     }
 });
 
-// setInterval(() => {
-//     fetch("https://opensky-network.org/api/states/all")
-//         .then((res) => {
-//             return res.json();
-//         })
-//         .then((res) => {
+var ctx2 = document.getElementById("graphique2").getContext('2d');
+var myLineChart2 = new Chart(ctx2, {
+    type: 'line',
+    data: {
+        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        datasets: [{
+            label: ' vols',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
 
-//             for (let i = 0; i < res.states.length; i++) {
-//                 console.log(res.states[i][2].length);
-//             }
+var ctx3 = document.getElementById("graphique3").getContext('2d');
+var myPieChart3 = new Chart(ctx3, {
+    type: 'pie',
+    data: {
+        labels: ["France", "Suisse", "Espagne", "Allemagne", "Angleterre", "Portugal"],
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
 
+// fonctions pictograme et fenetre information
+const picto = document.querySelector('.picto');
+const myWindow = document.querySelector('#window');
+const croix = document.querySelector('.croix');
 
-//         })
-//         .catch((err) => {
-//             if (err) throw err
-//         })
-// }, 15000);
+picto.addEventListener('click', function () {
+    myWindow.style.display = 'block';
+})
+
+croix.addEventListener('click', function () {
+    myWindow.style.display = 'none';
+})
 
 // var test = new Date();
 

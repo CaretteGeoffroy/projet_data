@@ -164,6 +164,8 @@ function flyingPlanes() {
     // console.log(ArrayPlanesOnFly);
 }
 
+
+//Mise à jour graphiques
 function currentTime() {
     date = new Date();
     let time = date.toLocaleTimeString();
@@ -185,6 +187,7 @@ const croix = document.querySelector('.croix');
 
 picto.addEventListener('click', function () {
     myWindow.style.display = 'block';
+    monSelect.style.display = 'none';
     clearInterval(chrono);
     chrono = setInterval(updateData, 16000);
 
@@ -192,6 +195,7 @@ picto.addEventListener('click', function () {
 
 croix.addEventListener('click', function () {
     myWindow.style.display = 'none';
+    monSelect.style.display = 'block';
     clearInterval(chrono);
 })
 
@@ -203,7 +207,7 @@ function loadGraph() {
                 data: {
                     labels: listTimePlane,
                     datasets: [{
-                        label: 'Nombre d\'avions en vol en temps réel (mis à jour toutes les 16 secondes)',
+                        label: '(mis à jour toutes les 16 secondes)',
                         data: listCountPlane,
                         backgroundColor: [
                             'rgba(0, 0, 0, 0)'
@@ -221,6 +225,10 @@ function loadGraph() {
                                 beginAtZero: false
                             }
                         }]
+                    },
+                    title: {
+                        display: true,
+                        text: 'Nombre d\'avions en vol en temps réel'
                     }
                 }
             });

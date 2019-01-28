@@ -5,7 +5,7 @@ $router = new AltoRouter();
 
 /**Création des routes */
 
-$router->map('GET', '/projet_data/', ['c' => 'HomeController', 'a' => 'index']);
+$router->map('GET', '/', ['c' => 'HomeController', 'a' => 'index']);
 $router->map('GET', '/json', ['c' => 'HomeController', 'a' => 'apiJSON']);
 
 $match = $router->match();

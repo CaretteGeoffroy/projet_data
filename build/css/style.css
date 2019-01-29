@@ -86,19 +86,21 @@ body {
   width: 80%;
   top: 2vh;
   left: 10%;
-  border: 1px solid black;
   z-index: 9999;
   display: none; }
 
 .croix {
-  height: 35px;
-  width: 35px;
+  color: #5267af;
+  font-size: 2rem;
   position: absolute;
-  right: 0;
-  top: -3px;
+  right: 10px;
+  top: 5px;
   z-index: 9999; }
   .croix:hover {
     cursor: pointer; }
+
+.logo:hover {
+  cursor: pointer; }
 
 .graphique {
   display: flex;

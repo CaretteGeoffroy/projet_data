@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./assets/carte/leaflet.css">
     <script src="./assets/carte/leaflet-src.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
         crossorigin="anonymous">
     <link rel="stylesheet" href="./build/css/style.css">
@@ -18,7 +19,7 @@
     <img src="./assets/img/logo.svg" alt="logo" class="logo">
     <div class="d-flex justify-content-center">
         <select id="country" name="country" class="form-control w-25 mt-3">
-            <option>Veuillez choisir un pays</option>
+            <option value="null">Veuillez choisir un pays</option>
         </select>
     </div>
 
@@ -26,7 +27,7 @@
     </div>
 
     <div id="window">
-        <img src="./assets/img/logo_picto7.svg" alt="croix" class="croix">
+        <i class="fas fa-times croix"></i>
 
         <div class="graphic_size d-flex align-items-center h-100">
             <canvas id="graphique1"></canvas>

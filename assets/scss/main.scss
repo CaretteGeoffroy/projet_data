@@ -82,7 +82,7 @@ body {
     width: 80%;
     top: 2vh;
     left: 10%;
-    border: 1px solid black;
+    border: 2px solid rgba(82, 103, 175, 0.6);
     z-index: 9999;
     display: none;
 }
@@ -93,7 +93,7 @@ body {
     height: 35px;
     width: 35px;
     position: absolute;
-    right: 0;
+    right: -1px;
     top: -3px;
     z-index: 9999;
 

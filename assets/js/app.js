@@ -40,7 +40,7 @@ function updateData() {
 function listCountry() {
     if (allCountry.length === 0) {
         data.forEach((element) => {
-            if (element[2].length > 0  ) {
+            if (element[2].length > 0) {
                 allCountry.push(element[2]);
             }
         });
@@ -151,16 +151,16 @@ function flyingPlanes() {
             countPlanesOnFly++
         }
     }
-    
-    if( listCountPlane.length < 10 ){
-        listCountPlane.push( countPlanesOnFly );
-    }else{
+
+    if (listCountPlane.length < 10) {
+        listCountPlane.push(countPlanesOnFly);
+    } else {
         listCountPlane.shift();
-        listCountPlane.push( countPlanesOnFly );
+        listCountPlane.push(countPlanesOnFly);
     }
-    
+
     loadGraph();
-    
+
     // console.log(ArrayPlanesOnFly);
 }
 
@@ -170,11 +170,11 @@ function currentTime() {
     date = new Date();
     let time = date.toLocaleTimeString();
 
-    if( listTimePlane.length < 10 ){
-        listTimePlane.push( time );
-    }else{
+    if (listTimePlane.length < 10) {
+        listTimePlane.push(time);
+    } else {
         listTimePlane.shift();
-        listTimePlane.push( time );
+        listTimePlane.push(time);
     }
 
     loadGraph();
@@ -200,46 +200,56 @@ croix.addEventListener('click', function () {
 })
 
 function loadGraph() {
-    if( myChart === null){
+    if (myChart === null) {
         let ctx = document.getElementById("graphique1");
-            myChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: listTimePlane,
-                    datasets: [{
-                        label: '(mis à jour toutes les 16 secondes)',
-                        data: listCountPlane,
-                        backgroundColor: [
-                            'rgba(0, 0, 0, 0)'
-                        ],
-                        borderColor: [
-                            'rgba(9, 132, 227,1.0)'
-                        ],
-                        borderWidth: 2,
+        myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: listTimePlane,
+                datasets: [{
+                    label: 'Nombre d\'avions',
+                    data: listCountPlane,
+                    backgroundColor: [
+                        'rgba(0, 0, 0, 0)'
+                    ],
+                    borderColor: [
+                        'rgba(9, 132, 227,1.0)'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                scales: {
+                    xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Heure (mis à jour toutes les 16 secondes)'
+                        }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: false
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Nombre d\'avions'
+                        }
                     }]
                 },
-                options: {
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: false
-                            }
-                        }]
-                    },
-                    title: {
-                        display: true,
-                        text: 'Nombre d\'avions en vol en temps réel'
-                    }
+                title: {
+                    display: true,
+                    text: 'Nombre d\'avions en vol en temps réel'
                 }
-            });
-    }else{
+            }
+        });
+    } else {
         myChart.data.datasets.data = listCountPlane;
         myChart.data.labels = listTimePlane;
         myChart.update();
     }
-    
+
 }
-            
+
 
 // var test = new Date();
 

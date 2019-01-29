@@ -6,6 +6,7 @@ require('../../node_modules/leaflet-rotatedmarker/leaflet.rotatedMarker.js');
 //Variables globale
 const map = L.map('mapid').setView([47.115, 2.548828], 6);
 const monSelect = document.querySelector('#country');
+const myLoader = document.querySelector('.loader');
 
 let markers = {};
 let allCountry = [];
@@ -64,6 +65,7 @@ function createListDeroulante(allCountry) {
 
 function displaySelect() {
     monSelect.style.opacity = '1';
+    myLoader.style.opacity = '0';
 }
 
 

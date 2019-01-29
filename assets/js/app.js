@@ -85,7 +85,7 @@ function showMarker() {
             numAvion: state[1],
             pays: state[2],
             altitude: Math.round(state[7]),
-            vitesse: Math.round(state[9]*3.6)
+            vitesse: Math.round(state[9] * 3.6)
         });
 
         markers[state[0]].addTo(markersLayer).on('click', markerOnClick);
@@ -139,6 +139,11 @@ document.onreadystatechange = function () {
             clearInterval(chrono);
             stateValue = monSelect.value;
             drawMap();
+            myChart.data.datasets.data.splice(0, 1);
+            myChart.data.labels.splice(0, 1);
+            flyingPlanes();
+            currentTime();
+            loadGraph();
             map.flyTo([47.115, 2.548828], 3);
             chrono = setInterval(deplacePlane, 16000);
         })
@@ -148,7 +153,9 @@ document.onreadystatechange = function () {
 function flyingPlanes() {
     countPlanesOnFly = 0;
     for (let i = 0; i < data.length; i++) {
-        if (data[i][8] != true) {
+        if (data[i][8] != true && monSelect.value == 'Tous les pays') {
+            countPlanesOnFly++
+        } else if (data[i][8] != true && data[i][2] === stateValue) {
             countPlanesOnFly++
         }
     }
@@ -187,14 +194,13 @@ const myWindow = document.querySelector('#window');
 const croix = document.querySelector('.croix');
 
 picto.addEventListener('click', function () {
-   
 
-    if (selectValue == 0){
+
+    if (selectValue == 0) {
         myWindow.style.display = 'block';
         monSelect.style.display = 'none';
         selectValue = 1;
-    }
-    else if(selectValue == 1){
+    } else if (selectValue == 1) {
         myWindow.style.display = 'none';
         monSelect.style.display = 'block';
         selectValue = 0;
@@ -252,13 +258,14 @@ function loadGraph() {
                 },
                 title: {
                     display: true,
-                    text: 'Nombre d\'avions en vol en temps réel'
+                    text: 'Nombre d\'avions en vol en temps réel (' + monSelect.value + ')'
                 }
             }
         });
     } else {
         myChart.data.datasets.data = listCountPlane;
         myChart.data.labels = listTimePlane;
+        myChart.options.title.text = 'Nombre d\'avions en vol en temps réel (' + monSelect.value + ')';
         myChart.update();
     }
 

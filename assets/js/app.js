@@ -1,4 +1,6 @@
 require('../scss/main.scss');
+require('../../node_modules/leaflet-rotatedmarker/leaflet.rotatedMarker.js');
+
 // import Chart from 'chart.js';
 
 //Variables globale
@@ -36,7 +38,6 @@ function updateData() {
             })
         );
 }
-
 
 function listCountry() {
     if (allCountry.length === 0) {
@@ -85,7 +86,8 @@ function showMarker() {
             numAvion: state[1],
             pays: state[2],
             altitude: Math.round(state[7]),
-            vitesse: Math.round(state[9] * 3.6)
+            vitesse: Math.round(state[9] * 3.6),
+            rotationAngle: Math.round(state[10])
         });
 
         markers[state[0]].addTo(markersLayer).on('click', markerOnClick);

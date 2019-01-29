@@ -16,6 +16,7 @@ let countPlanesOnFly = 0;
 let listCountPlane = new Array();
 let myChart = null;
 let listTimePlane = new Array();
+let selectValue = 0;
 
 L.tileLayer('https://api.mapbox.com/styles/v1/geoffroycarette/cjqxkkqxb15fm2rlqvssrl8r6/tiles/256/{z}/{x}/{y}?access_token={accessToken}', {
     maxZoom: 18,
@@ -186,16 +187,29 @@ const myWindow = document.querySelector('#window');
 const croix = document.querySelector('.croix');
 
 picto.addEventListener('click', function () {
-    myWindow.style.display = 'block';
-    monSelect.style.display = 'none';
+   
+
+    if (selectValue == 0){
+        myWindow.style.display = 'block';
+        monSelect.style.display = 'none';
+        selectValue = 1;
+    }
+    else if(selectValue == 1){
+        myWindow.style.display = 'none';
+        monSelect.style.display = 'block';
+        selectValue = 0;
+    }
+
     clearInterval(chrono);
     chrono = setInterval(updateData, 16000);
 
 })
 
+
 croix.addEventListener('click', function () {
     myWindow.style.display = 'none';
     monSelect.style.display = 'block';
+    selectValue = 0;
     clearInterval(chrono);
 })
 

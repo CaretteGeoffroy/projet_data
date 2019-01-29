@@ -25,7 +25,7 @@ L.tileLayer('https://api.mapbox.com/styles/v1/geoffroycarette/cjqxkkqxb15fm2rlqv
 }).addTo(map);
 
 function updateData() {
-    fetch("/json")
+    fetch("/projet_data/json")
         .then((response) => response.json()
             .then((json) => {
                 // console.log(json);

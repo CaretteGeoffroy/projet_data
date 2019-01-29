@@ -101,6 +101,12 @@ body {
     }
 }
 
+.logo{
+    &:hover {
+        cursor: pointer;
+    }
+}
+
 // style des graphiques
 
 .graphique {

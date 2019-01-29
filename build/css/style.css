@@ -99,6 +99,9 @@ body {
   .croix:hover {
     cursor: pointer; }
 
+.logo:hover {
+  cursor: pointer; }
+
 .graphique {
   display: flex;
   justify-content: space-between;

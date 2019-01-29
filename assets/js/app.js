@@ -25,7 +25,7 @@ L.tileLayer('https://api.mapbox.com/styles/v1/geoffroycarette/cjqxkkqxb15fm2rlqv
 }).addTo(map);
 
 function updateData() {
-    fetch("/json")
+    fetch("/projet_data/json")
         .then((response) => response.json()
             .then((json) => {
                 // console.log(json);
@@ -189,9 +189,14 @@ function currentTime() {
 }
 
 // fonctions pictograme et fenetre information
+
 const picto = document.querySelector('.picto');
 const myWindow = document.querySelector('#window');
 const croix = document.querySelector('.croix');
+const logo = document.querySelector('.logo');
+const country = document.querySelector('#country');
+
+
 
 picto.addEventListener('click', function () {
 
@@ -217,6 +222,13 @@ croix.addEventListener('click', function () {
     monSelect.style.display = 'block';
     selectValue = 0;
     clearInterval(chrono);
+})
+
+// Fonctions raz recherche pays avec logo skyblue
+
+logo.addEventListener('click', function(){
+    monSelect.value = 'null';
+    map.removeLayer(markersLayer);
 })
 
 function loadGraph() {

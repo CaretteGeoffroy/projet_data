@@ -86,16 +86,15 @@ body {
   width: 80%;
   top: 2vh;
   left: 10%;
-  border: 2px solid rgba(82, 103, 175, 0.6);
   z-index: 9999;
   display: none; }
 
 .croix {
-  height: 35px;
-  width: 35px;
+  color: #5267af;
+  font-size: 2rem;
   position: absolute;
-  right: -1px;
-  top: -3px;
+  right: 10px;
+  top: 5px;
   z-index: 9999; }
   .croix:hover {
     cursor: pointer; }

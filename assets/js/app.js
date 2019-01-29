@@ -84,8 +84,8 @@ function showMarker() {
             icao24: state[0],
             numAvion: state[1],
             pays: state[2],
-            altitude: state[7],
-            vitesse: state[9]
+            altitude: Math.round(state[7]),
+            vitesse: Math.round(state[9]*3.6)
         });
 
         markers[state[0]].addTo(markersLayer).on('click', markerOnClick);
@@ -119,8 +119,8 @@ function markerOnClick(e) {
         .setContent("<b>Numéro d'avion : </b>" + e.target.options.numAvion + "<br/>" +
             "<b>Pays d'origine : </b>" + e.target.options.pays + "<br/>" +
             "<b>Latitude : </b>" + e.target.options.lat + "<b> Longitude : </b>" + e.target.options.lng + "<br/>" +
-            "<b>Altitude : </b>" + e.target.options.altitude + "<br/>" +
-            "<b>Vitesse : </b>" + e.target.options.vitesse + " m/s <br/>")
+            "<b>Altitude : </b>" + e.target.options.altitude + " m <br/>" +
+            "<b>Vitesse : </b>" + e.target.options.vitesse + " km/h <br/>")
         .openOn(map);
 };
 

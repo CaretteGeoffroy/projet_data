@@ -25,7 +25,7 @@ L.tileLayer('https://api.mapbox.com/styles/v1/geoffroycarette/cjqxkkqxb15fm2rlqv
 }).addTo(map);
 
 function updateData() {
-    fetch("/projet_data/json")
+    fetch("/json")
         .then((response) => response.json()
             .then((json) => {
                 // console.log(json);
@@ -224,11 +224,15 @@ croix.addEventListener('click', function () {
     clearInterval(chrono);
 })
 
-// Fonctions raz recherche pays avec logo skyblue
-
+//Refresh de la map en cliquant sur le logo
 logo.addEventListener('click', function(){
-    monSelect.value = 'null';
+    monSelect.value = 'Tous les pays';
     map.removeLayer(markersLayer);
+    myChart.data.datasets.data.splice(0, 1);
+    myChart.data.labels.splice(0, 1);
+    flyingPlanes();
+    currentTime();
+    loadGraph();
 })
 
 function loadGraph() {

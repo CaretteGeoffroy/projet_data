@@ -29,5 +29,8 @@
     "build": "webpack --config webpack.config.js",
     "watch": "webpack --watch",
     "start": "npm run watch &  webpack-dev-server --open  --mode development"
+  },
+  "dependencies": {
+    "leaflet-rotatedmarker": "^0.2.0"
   }
 }

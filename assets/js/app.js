@@ -1,9 +1,12 @@
 require('../scss/main.scss');
+require('../../node_modules/leaflet-rotatedmarker/leaflet.rotatedMarker.js');
+
 // import Chart from 'chart.js';
 
 //Variables globale
 const map = L.map('mapid').setView([47.115, 2.548828], 6);
 const monSelect = document.querySelector('#country');
+const myLoader = document.querySelector('.loader');
 
 let markers = {};
 let allCountry = [];
@@ -37,7 +40,6 @@ function updateData() {
         );
 }
 
-
 function listCountry() {
     if (allCountry.length === 0) {
         data.forEach((element) => {
@@ -63,6 +65,7 @@ function createListDeroulante(allCountry) {
 
 function displaySelect() {
     monSelect.style.opacity = '1';
+    myLoader.style.opacity = '0';
 }
 
 
@@ -85,7 +88,8 @@ function showMarker() {
             numAvion: state[1],
             pays: state[2],
             altitude: Math.round(state[7]),
-            vitesse: Math.round(state[9] * 3.6)
+            vitesse: Math.round(state[9] * 3.6),
+            rotationAngle: Math.round(state[10])
         });
 
         markers[state[0]].addTo(markersLayer).on('click', markerOnClick);
@@ -212,7 +216,7 @@ picto.addEventListener('click', function () {
     }
 
     clearInterval(chrono);
-    chrono = setInterval(updateData, 16000);
+    chrono = setInterval(deplacePlane, 16000);
 
 })
 
@@ -222,6 +226,7 @@ croix.addEventListener('click', function () {
     monSelect.style.display = 'block';
     selectValue = 0;
     clearInterval(chrono);
+    chrono = setInterval(deplacePlane, 16000);
 })
 
 //Refresh de la map en cliquant sur le logo
@@ -286,14 +291,3 @@ function loadGraph() {
     }
 
 }
-
-
-// var test = new Date();
-
-// var aujourdhui = Math.round(new Date().getTime()/1000);
-
-// var hier = Math.round((new Date().setTime(new Date().getTime() - 86400000))/1000);
-
-// console.log(test);
-// console.log (aujourdhui);
-// console.log(hier);

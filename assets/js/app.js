@@ -85,7 +85,8 @@ function showMarker() {
             numAvion: state[1],
             pays: state[2],
             altitude: Math.round(state[7]),
-            vitesse: Math.round(state[9] * 3.6)
+            vitesse: Math.round(state[9] * 3.6),
+            rotation: Math.round(state[10])
         });
 
         markers[state[0]].addTo(markersLayer).on('click', markerOnClick);
@@ -120,7 +121,8 @@ function markerOnClick(e) {
             "<b>Pays d'origine : </b>" + e.target.options.pays + "<br/>" +
             "<b>Latitude : </b>" + e.target.options.lat + "<b> Longitude : </b>" + e.target.options.lng + "<br/>" +
             "<b>Altitude : </b>" + e.target.options.altitude + " m <br/>" +
-            "<b>Vitesse : </b>" + e.target.options.vitesse + " km/h <br/>")
+            "<b>Vitesse : </b>" + e.target.options.vitesse + " km/h <br/>" +
+            "<b>Rotation : </b>" + e.target.options.rotation + "°")
         .openOn(map);
 };
 

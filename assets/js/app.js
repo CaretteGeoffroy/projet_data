@@ -216,7 +216,7 @@ picto.addEventListener('click', function () {
     }
 
     clearInterval(chrono);
-    chrono = setInterval(updateData, 16000);
+    chrono = setInterval(deplacePlane, 16000);
 
 })
 
@@ -226,6 +226,7 @@ croix.addEventListener('click', function () {
     monSelect.style.display = 'block';
     selectValue = 0;
     clearInterval(chrono);
+    chrono = setInterval(deplacePlane, 16000);
 })
 
 //Refresh de la map en cliquant sur le logo
@@ -290,14 +291,3 @@ function loadGraph() {
     }
 
 }
-
-
-// var test = new Date();
-
-// var aujourdhui = Math.round(new Date().getTime()/1000);
-
-// var hier = Math.round((new Date().setTime(new Date().getTime() - 86400000))/1000);
-
-// console.log(test);
-// console.log (aujourdhui);
-// console.log(hier);

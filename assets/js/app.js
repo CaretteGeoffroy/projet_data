@@ -1,9 +1,12 @@
 require('../scss/main.scss');
+require('../../node_modules/leaflet-rotatedmarker/leaflet.rotatedMarker.js');
+
 // import Chart from 'chart.js';
 
 //Variables globale
 const map = L.map('mapid').setView([47.115, 2.548828], 6);
 const monSelect = document.querySelector('#country');
+const myLoader = document.querySelector('.loader');
 
 let markers = {};
 let allCountry = [];
@@ -37,7 +40,6 @@ function updateData() {
         );
 }
 
-
 function listCountry() {
     if (allCountry.length === 0) {
         data.forEach((element) => {
@@ -63,6 +65,7 @@ function createListDeroulante(allCountry) {
 
 function displaySelect() {
     monSelect.style.opacity = '1';
+    myLoader.style.opacity = '0';
 }
 
 
@@ -86,7 +89,7 @@ function showMarker() {
             pays: state[2],
             altitude: Math.round(state[7]),
             vitesse: Math.round(state[9] * 3.6),
-            rotation: Math.round(state[10])
+            rotationAngle: Math.round(state[10])
         });
 
         markers[state[0]].addTo(markersLayer).on('click', markerOnClick);
@@ -121,8 +124,7 @@ function markerOnClick(e) {
             "<b>Pays d'origine : </b>" + e.target.options.pays + "<br/>" +
             "<b>Latitude : </b>" + e.target.options.lat + "<b> Longitude : </b>" + e.target.options.lng + "<br/>" +
             "<b>Altitude : </b>" + e.target.options.altitude + " m <br/>" +
-            "<b>Vitesse : </b>" + e.target.options.vitesse + " km/h <br/>" +
-            "<b>Rotation : </b>" + e.target.options.rotation + "°")
+            "<b>Vitesse : </b>" + e.target.options.vitesse + " km/h <br/>")
         .openOn(map);
 };
 

@@ -35,13 +35,33 @@ body {
     height: 50%; }
   body .graphic_size {
     width: 100%; }
+  body .loader {
+    background-color: rgba(255, 255, 255, 0.9);
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    z-index: 99999;
+    border-radius: 50%;
+    top: calc(50% - 75px);
+    left: calc(50% - 75px);
+    opacity: 1;
+    transition: opacity 0.5s; }
+    body .loader img {
+      position: absolute;
+      width: 90%;
+      right: 8px;
+      bottom: 8px; }
+    body .loader p {
+      position: absolute;
+      bottom: 48px;
+      right: 23px; }
 
 #mapid {
   height: 100vh; }
 
 #country {
-  transition-duration: 5s;
   opacity: 0;
+  transition: opacity 0.5s;
   height: 45px; }
 
 .logo {

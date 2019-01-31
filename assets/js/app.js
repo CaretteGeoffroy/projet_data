@@ -35,15 +35,16 @@ function updateData() {
                 data = json.states;
                 listCountry();
                 flyingPlanes();
-                currentTime();
             })
         );
 }
 
 function listCountry() {
     if (allCountry.length === 0) {
+        // Pour chaques donnée du JSON
         data.forEach((element) => {
             if (element[2].length > 0) {
+                // Ajoute les pays au array
                 allCountry.push(element[2]);
             }
         });
@@ -66,6 +67,9 @@ function createListDeroulante(allCountry) {
 function displaySelect() {
     monSelect.style.opacity = '1';
     myLoader.style.opacity = '0';
+    setTimeout(function () {
+        myLoader.style.display = 'none';
+    }, 50);
 }
 
 
@@ -103,7 +107,6 @@ function showMarker() {
 function deplacePlane() {
     updateData();
     drawMap();
-    currentTime();
 }
 
 
@@ -131,30 +134,37 @@ function markerOnClick(e) {
 
 function initApplication() {
     updateData();
+    chrono = setInterval(deplacePlane, 16000);
 }
 
 
 /******* Apres chargement page  */
 document.onreadystatechange = function () {
     if (document.readyState === 'complete') {
+       
         initApplication();
 
         monSelect.addEventListener('change', () => {
+
             clearInterval(chrono);
             stateValue = monSelect.value;
-            drawMap();
             myChart.data.datasets.data.splice(0, 1);
             myChart.data.labels.splice(0, 1);
-            flyingPlanes();
-            currentTime();
-            loadGraph();
+            listCountPlane = [];
+            listTimePlane = [];
+            drawMap();
+            
+            //currentTime();
             map.flyTo([47.115, 2.548828], 3);
             chrono = setInterval(deplacePlane, 16000);
+            
+            
         })
     }
 }
 
 function flyingPlanes() {
+    
     countPlanesOnFly = 0;
     for (let i = 0; i < data.length; i++) {
         if (data[i][8] != true && monSelect.value == 'Tous les pays') {
@@ -164,21 +174,7 @@ function flyingPlanes() {
         }
     }
 
-    if (listCountPlane.length < 10) {
-        listCountPlane.push(countPlanesOnFly);
-    } else {
-        listCountPlane.shift();
-        listCountPlane.push(countPlanesOnFly);
-    }
-
-    loadGraph();
-
-    // console.log(ArrayPlanesOnFly);
-}
-
-
-//Mise à jour graphiques
-function currentTime() {
+    
     date = new Date();
     let time = date.toLocaleTimeString();
 
@@ -189,8 +185,20 @@ function currentTime() {
         listTimePlane.push(time);
     }
 
+    if (listCountPlane.length < 10) {
+        listCountPlane.push(countPlanesOnFly);
+    } else {
+        listCountPlane.shift();
+        listCountPlane.push(countPlanesOnFly);
+    }
+    console.log(listCountPlane);
     loadGraph();
+
+    // console.log(ArrayPlanesOnFly);
 }
+
+
+
 
 // fonctions pictograme et fenetre information
 
@@ -215,8 +223,7 @@ picto.addEventListener('click', function () {
         selectValue = 0;
     }
 
-    clearInterval(chrono);
-    chrono = setInterval(deplacePlane, 16000);
+    
 
 })
 
@@ -225,23 +232,21 @@ croix.addEventListener('click', function () {
     myWindow.style.display = 'none';
     monSelect.style.display = 'block';
     selectValue = 0;
-    clearInterval(chrono);
-    chrono = setInterval(deplacePlane, 16000);
+    
 })
 
 //Refresh de la map en cliquant sur le logo
-logo.addEventListener('click', function(){
+logo.addEventListener('click', function () {
     monSelect.value = 'Tous les pays';
     map.removeLayer(markersLayer);
     myChart.data.datasets.data.splice(0, 1);
     myChart.data.labels.splice(0, 1);
     flyingPlanes();
-    currentTime();
-    loadGraph();
 })
 
 function loadGraph() {
     if (myChart === null) {
+        console.log("creation")
         let ctx = document.getElementById("graphique1");
         myChart = new Chart(ctx, {
             type: 'line',
@@ -284,10 +289,29 @@ function loadGraph() {
             }
         });
     } else {
+        // removeData(myChart);
+       
         myChart.data.datasets.data = listCountPlane;
         myChart.data.labels = listTimePlane;
         myChart.options.title.text = 'Nombre d\'avions en vol en temps réel (' + monSelect.value + ')';
         myChart.update();
+
+
+        
     }
 
 }
+
+function removeData(chart) {
+    // chart.data.labels.pop();
+    chart.data.datasets.forEach((dataset) => {
+        dataset.data.pop();
+    });
+    chart.update();
+}
+
+// window.onload = function () {
+//     for (let i = 0; i < data.length; i++) {
+//         console.log(data[i][0]);
+//     }
+// }

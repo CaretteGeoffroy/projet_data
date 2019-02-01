@@ -1,8 +1,7 @@
 @media (max-width: 575px) {
   body #country {
     width: 80% !important;
-    top: 100px;
-    opacity: 0.8 !important; }
+    top: 100px; }
   body #window {
     height: 36vh;
     top: 32vh;

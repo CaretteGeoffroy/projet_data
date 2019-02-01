@@ -143,10 +143,13 @@ document.onreadystatechange = function () {
             clearInterval(chrono);
             stateValue = monSelect.value;
             drawMap();
-            myChart.data.datasets.data.splice(0, 1);
-            myChart.data.labels.splice(0, 1);
+            // listCountPlane = [];
+            // listTimePlane = [];
             flyingPlanes();
             currentTime();
+            myChart.data.datasets.data.splice(0, 1);
+            myChart.data.labels.splice(0, 1);
+            myChart.update();
             loadGraph();
             map.flyTo([47.115, 2.548828], 3);
             chrono = setInterval(deplacePlane, 16000);
@@ -198,9 +201,6 @@ const picto = document.querySelector('.picto');
 const myWindow = document.querySelector('#window');
 const croix = document.querySelector('.croix');
 const logo = document.querySelector('.logo');
-const country = document.querySelector('#country');
-
-
 
 picto.addEventListener('click', function () {
 
@@ -215,9 +215,6 @@ picto.addEventListener('click', function () {
         selectValue = 0;
     }
 
-    clearInterval(chrono);
-    chrono = setInterval(deplacePlane, 16000);
-
 })
 
 
@@ -225,22 +222,22 @@ croix.addEventListener('click', function () {
     myWindow.style.display = 'none';
     monSelect.style.display = 'block';
     selectValue = 0;
-    clearInterval(chrono);
-    chrono = setInterval(deplacePlane, 16000);
 })
 
 //Refresh de la map en cliquant sur le logo
-logo.addEventListener('click', function(){
-    monSelect.value = 'Tous les pays';
-    map.removeLayer(markersLayer);
-    myChart.data.datasets.data.splice(0, 1);
-    myChart.data.labels.splice(0, 1);
-    flyingPlanes();
-    currentTime();
-    loadGraph();
-})
+// logo.addEventListener('click', function(){
+//     monSelect.value = 'Tous les pays';
+//     map.removeLayer(markersLayer);
+//     myChart.data.datasets.data.splice(0, 1);
+//     myChart.data.labels.splice(0, 1);
+//     myChart.update();
+//     flyingPlanes();
+//     currentTime();
+//     loadGraph();
+// })
 
 function loadGraph() {
+    console.log(myChart);
     if (myChart === null) {
         let ctx = document.getElementById("graphique1");
         myChart = new Chart(ctx, {
@@ -284,6 +281,7 @@ function loadGraph() {
             }
         });
     } else {
+        console.log(listCountPlane);
         myChart.data.datasets.data = listCountPlane;
         myChart.data.labels = listTimePlane;
         myChart.options.title.text = 'Nombre d\'avions en vol en temps réel (' + monSelect.value + ')';

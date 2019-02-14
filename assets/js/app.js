@@ -91,6 +91,7 @@ function showMarker() {
             icao24: state[0],
             numAvion: state[1],
             pays: state[2],
+            icao24: state[0],
             altitude: Math.round(state[7]),
             vitesse: Math.round(state[9] * 3.6),
             rotationAngle: Math.round(state[10])

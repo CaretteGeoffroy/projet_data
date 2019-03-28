@@ -3,7 +3,7 @@
     width: 80% !important;
     top: 100px; }
   body #window {
-    height: 36vh;
+    height: 50vh;
     top: 32vh;
     width: 90%;
     left: 5%; } }
@@ -12,7 +12,7 @@
   body #country {
     width: 50% !important; }
   body #window {
-    height: 50vh;
+    height: 70vh;
     top: 25vh;
     width: 90%;
     left: 5%; } }
@@ -21,7 +21,7 @@
   body #country {
     width: 70% !important; }
   body #window {
-    height: 70vh;
+    height: 80vh;
     top: 15vh;
     width: 90%;
     left: 5%; } }
@@ -107,6 +107,15 @@ body {
   left: 10%;
   z-index: 9999;
   display: none; }
+
+@media (max-height: 570px) {
+  body #mapid {
+    min-height: 510px; }
+    body #mapid #window {
+      min-height: 96vh;
+      top: 2vh;
+      width: 90%;
+      left: 5%; } }
 
 .croix {
   color: #5267af;

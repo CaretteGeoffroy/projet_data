@@ -7,7 +7,9 @@
     height: 36vh;
     top: 32vh;
     width: 90%;
-    left: 5%; } }
+    left: 5%; }
+  body .picto {
+    display: none !important; } }
 
 @media (min-width: 576px) and (max-width: 767px) {
   body #country {
@@ -16,7 +18,9 @@
     height: 50vh;
     top: 25vh;
     width: 90%;
-    left: 5%; } }
+    left: 5%; }
+  body .picto {
+    display: none !important; } }
 
 @media (min-width: 768px) and (max-width: 991px) {
   body #country {

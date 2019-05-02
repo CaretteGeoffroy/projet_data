@@ -108,15 +108,6 @@ body {
   z-index: 9999;
   display: none; }
 
-@media (max-height: 570px) {
-  body #mapid {
-    min-height: 510px; }
-    body #mapid #window {
-      min-height: 96vh;
-      top: 2vh;
-      width: 90%;
-      left: 5%; } }
-
 .croix {
   color: #5267af;
   font-size: 2rem;

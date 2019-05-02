@@ -208,9 +208,7 @@ function flyingPlanes() {
 const picto = document.querySelector('.picto');
 const myWindow = document.querySelector('#window');
 const croix = document.querySelector('.croix');
-const logo = document.querySelector('.logo'); 
- 
- 
+const logo = document.querySelector('.logo');
 picto.addEventListener('click', function () {
  
  
@@ -223,9 +221,6 @@ picto.addEventListener('click', function () {
         monSelect.style.display = 'block';
         selectValue = 0;
     }
- 
-   
- 
 })
  
  
@@ -233,7 +228,6 @@ croix.addEventListener('click', function () {
     myWindow.style.display = 'none';
     monSelect.style.display = 'block';
     selectValue = 0;
-   
 })
  
 //Refresh de la map en cliquant sur le logo

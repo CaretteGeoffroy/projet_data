@@ -4,3 +4,4 @@ composer.lock
 package-lock.json
 /build/
 ubuntu-bionic-18.04-cloudimg-console
+airports.sql

@@ -1,10 +1,9 @@
 @media (max-width: 575px) {
   body #country {
     width: 80% !important;
-    top: 100px;
-    opacity: 0.8 !important; }
+    top: 100px; }
   body #window {
-    height: 36vh;
+    height: 50vh;
     top: 32vh;
     width: 90%;
     left: 5%; }
@@ -15,7 +14,7 @@
   body #country {
     width: 50% !important; }
   body #window {
-    height: 50vh;
+    height: 70vh;
     top: 25vh;
     width: 90%;
     left: 5%; }
@@ -26,7 +25,7 @@
   body #country {
     width: 70% !important; }
   body #window {
-    height: 70vh;
+    height: 80vh;
     top: 15vh;
     width: 90%;
     left: 5%; } }
